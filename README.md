@@ -150,27 +150,7 @@ quizstack33.duckdns.org
 - Configured Nginx for secure deployment
 - Redirected HTTP traffic to HTTPS
 
----
 
-## 📸 Screenshots
-
-You can add screenshots here:
-
-- Homepage
-- Quiz Questions
-- Result Page
-- DynamoDB Table
-- AWS Console Architecture
-
-Example:
-
-```md
-![Homepage](images/homepage.png)
-![Results](images/results.png)
-![DynamoDB](images/dynamodb.png)
-```
-
----
 
 ## 📚 What I Learned
 
@@ -199,7 +179,7 @@ Developed and deployed a live technical assessment web application using **AWS E
 
 **Hisham C**  
 🔗 GitHub: https://github.com/hishamc33-max  
-🔗 LinkedIn: *(Add your LinkedIn profile link here)*
+🔗 LinkedIn: *(www.linkedin.com/in/hishamc33)*
 
 ---
 
