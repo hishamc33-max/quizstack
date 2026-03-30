@@ -1,157 +1,218 @@
-# Cloud Engineering Assessment Platform
+# 🚀 QuizStack
 
-A cloud-based technical assessment web application built using AWS services.
-This project allows users to attempt a quiz, calculate scores instantly, and store results in a serverless backend.
+**QuizStack** is a cloud-based technical assessment platform built and deployed on AWS.  
+It allows users to take a timed technical quiz, calculate scores dynamically, and store results in the cloud using a serverless backend.
 
----
+🌐 **Live Demo:**  
+https://quizstack33.duckdns.org
 
-## Project Overview
-
-The **Cloud Engineering Assessment Platform** is designed to evaluate knowledge in:
-
-* Cloud Computing
-* AWS Services
-* DevOps Fundamentals
-* Linux Administration
-* Networking
-* Automation Concepts
-
-Users can take the assessment through a web interface, and their results are processed and stored using AWS services.
-
----
-
-## Features
-
-* Interactive technical quiz
-* Real-time score calculation
-* Timer-based assessment
-* Professional result page
-* Serverless backend integration
-* Result storage in DynamoDB
-* Hosted frontend using EC2 and Nginx
-
----
-
-## Tech Stack
-
-### Frontend
-
-* HTML
-* CSS
-* JavaScript
-
-### AWS Services Used
-
-* Amazon EC2
-* Nginx
-* AWS Lambda
-* Amazon API Gateway
-* Amazon DynamoDB
-
----
-
-## Architecture
-
-User Browser → EC2 (Nginx) → API Gateway → Lambda → DynamoDB
-
----
-
-## How It Works
-
-1. User opens the quiz application hosted on EC2.
-2. User enters details and attempts the assessment.
-3. Frontend sends quiz results to API Gateway.
-4. API Gateway invokes AWS Lambda.
-5. Lambda processes the request and stores data in DynamoDB.
-6. Final score is displayed to the user.
-
----
-
-## Project Structure
-
-```text
-project/
-│── index.html
-│── README.md
-```
-
----
-
-## Deployment Steps
-
-### 1. Launch EC2 Instance
-
-* Launch a Linux EC2 instance on AWS
-* Install and configure Nginx
-* Host the frontend quiz application
-
-### 2. Create DynamoDB Table
-
-* Create a table to store quiz results
-* Example table name: `QuizResults`
-
-### 3. Create AWS Lambda Function
-
-* Write Python code to receive quiz submission
-* Save user data and score to DynamoDB
-
-### 4. Create API Gateway
-
-* Create a POST method
-* Connect it to the Lambda function
-* Enable CORS
-
-### 5. Connect Frontend to API
-
-* Use JavaScript `fetch()` method
-* Send data from `index.html` to API Gateway
-
----
-
-## Sample Use Case
-
-This project can be used for:
-
-* Technical screening
-* Internal employee skill assessment
-* Student cloud knowledge evaluation
-* Practice project for AWS / DevOps learners
-
----
-
-## Future Improvements
-
-* Add login system
-* Add admin dashboard
-* Add leaderboard
-* Export results to PDF
-* Add analytics and charts
-
----
-
-## Live Demo
-
-
-
-```text
-http://quizstack33.duckdns.org/
-```
-
----
-
-## GitHub Repository
-
+📂 **GitHub Repository:**  
 https://github.com/hishamc33-max/quizstack
 
 ---
 
-## Author
+## 📌 Project Overview
 
-**Hisham C**
-Aspiring DevOps & Cloud Engineer
+QuizStack is designed to simulate a professional technical assessment platform.  
+It was developed to gain hands-on experience in **AWS Cloud, Linux, Nginx, Serverless Architecture, API Integration, Database Storage, DNS configuration, and HTTPS security**.
+
+The application consists of:
+
+- A **frontend quiz interface** hosted on **AWS EC2**
+- A **serverless backend** built using **AWS Lambda**
+- An **API layer** using **Amazon API Gateway**
+- A **NoSQL database** using **Amazon DynamoDB**
+- A **custom domain** configured with **DuckDNS**
+- **HTTPS/SSL encryption** using **Let’s Encrypt + Nginx**
 
 ---
 
-## License
+## 🛠️ Tech Stack
 
-This project is created for learning and portfolio purposes.
+- **AWS EC2**
+- **Nginx**
+- **Amazon API Gateway**
+- **AWS Lambda**
+- **Amazon DynamoDB**
+- **DuckDNS**
+- **Let’s Encrypt SSL**
+- **HTML**
+- **CSS**
+- **JavaScript**
+- **Python (Boto3)**
+
+---
+
+## ✨ Features
+
+- Professional quiz web interface
+- Timer-based assessment
+- Dynamic score calculation
+- Flexible question attempt
+- Cloud-based result storage
+- Secure live deployment using HTTPS
+- Custom domain access
+- Real-time API integration
+
+---
+
+## 🏗️ Architecture
+
+### Project Flow
+
+Frontend (HTML/CSS/JS)  
+⬇  
+Hosted on **AWS EC2 + Nginx**  
+⬇  
+Sends quiz results to **Amazon API Gateway**  
+⬇  
+API Gateway triggers **AWS Lambda**  
+⬇  
+Lambda stores user result into **Amazon DynamoDB**  
+⬇  
+Accessible through **DuckDNS custom domain + HTTPS/SSL**
+
+---
+
+## 🌐 Live Project
+
+🔗 **Website:**  
+https://quizstack33.duckdns.org
+
+---
+
+## 📂 GitHub Repository
+
+🔗 **Repository:**  
+https://github.com/hishamc33-max/quizstack
+
+---
+
+## 🔐 HTTPS / SSL Configuration
+
+The application was secured using **Let’s Encrypt SSL certificates** and configured manually in **Nginx**.
+
+### Security Improvements Implemented:
+- Enabled **HTTPS**
+- Redirected **HTTP → HTTPS**
+- Installed SSL certificate using **Certbot**
+- Configured **Nginx server blocks** for secure hosting
+
+This ensures encrypted communication for users accessing the live project.
+
+---
+
+## 🚀 Deployment Steps
+
+### 1. Launch AWS EC2 Instance
+- Created and launched an EC2 instance
+- Connected using SSH
+
+### 2. Install Nginx
+- Installed and configured Nginx on the server
+- Hosted the frontend quiz application
+
+### 3. Upload Frontend Files
+- Uploaded `index.html` and related assets to:
+```bash
+/usr/share/nginx/html/
+```
+
+### 4. Create Backend with AWS Lambda
+- Developed a Lambda function using Python
+- Used **Boto3** to insert quiz results into DynamoDB
+
+### 5. Configure API Gateway
+- Created a POST route (`/submit`)
+- Connected it to Lambda
+- Enabled **CORS** for frontend communication
+
+### 6. Create DynamoDB Table
+- Created a table to store:
+  - Name
+  - Email
+  - Phone
+  - Score
+  - Attempted Questions
+
+### 7. Connect Frontend to Backend
+- Used JavaScript `fetch()` to send quiz results to API Gateway
+
+### 8. Configure Custom Domain
+- Mapped EC2 Elastic IP to **DuckDNS**
+- Created public access through:
+```text
+quizstack33.duckdns.org
+```
+
+### 9. Enable HTTPS / SSL
+- Installed SSL certificate with Let’s Encrypt
+- Configured Nginx for secure deployment
+- Redirected HTTP traffic to HTTPS
+
+---
+
+## 📸 Screenshots
+
+You can add screenshots here:
+
+- Homepage
+- Quiz Questions
+- Result Page
+- DynamoDB Table
+- AWS Console Architecture
+
+Example:
+
+```md
+![Homepage](images/homepage.png)
+![Results](images/results.png)
+![DynamoDB](images/dynamodb.png)
+```
+
+---
+
+## 📚 What I Learned
+
+Through this project, I gained hands-on experience in:
+
+- Linux server management
+- Nginx web hosting
+- AWS EC2 deployment
+- API Gateway integration
+- Serverless backend development
+- DynamoDB data storage
+- DNS mapping with DuckDNS
+- HTTPS / SSL implementation
+- Cloud application deployment workflow
+
+---
+
+## 💼 Resume Project Description
+
+**QuizStack – Cloud-Based Technical Assessment Platform**  
+Developed and deployed a live technical assessment web application using **AWS EC2, Nginx, API Gateway, Lambda, DynamoDB, DuckDNS, and HTTPS with SSL**. Implemented serverless result processing, cloud-based storage, custom domain mapping, and secure HTTPS deployment.
+
+---
+
+## 📢 Author
+
+**Hisham C**  
+🔗 GitHub: https://github.com/hishamc33-max  
+🔗 LinkedIn: *(Add your LinkedIn profile link here)*
+
+---
+
+## ⭐ Conclusion
+
+QuizStack is a complete hands-on cloud deployment project that demonstrates practical understanding of:
+
+- **Cloud Infrastructure**
+- **DevOps Basics**
+- **Serverless Backend**
+- **Linux Hosting**
+- **Secure Web Deployment**
+
+---
+
+### If you like this project, feel free to ⭐ star the repository!
