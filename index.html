@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CloudOps Skill Check</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      min-height: 100vh;
+      padding: 30px 15px;
+      color: #111827;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .hero {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 45px 35px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #e5e7eb;
+      max-width: 750px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px 35px;
+      border-radius: 18px;
+      min-width: 220px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .stat-card h2 {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card p {
+      font-size: 15px;
+      color: #f3f4f6;
+    }
+
+    .timer-box {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 20px 35px;
+      border-radius: 18px;
+      min-width: 220px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .timer-box h2 {
+      font-size: 34px;
+      margin-bottom: 8px;
+      color: #facc15;
+    }
+
+    .timer-box p {
+      font-size: 15px;
+      color: #f3f4f6;
+    }
+
+    .quiz-box {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 40px 35px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .section-title {
+      font-size: 32px;
+      color: #1e3c72;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 35px;
+      font-size: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #2a5298;
+      box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.12);
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .quiz-header h2 {
+      font-size: 30px;
+      color: #1e3c72;
+    }
+
+    .quiz-badge {
+      background: #e0ecff;
+      color: #1d4ed8;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .question {
+      background: #f5f7fb;
+      border-left: 6px solid #1e3c72;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      transition: 0.25s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .question h3 {
+      font-size: 20px;
+      margin-bottom: 18px;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #374151;
+      cursor: pointer;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+
+    .question label:hover {
+      background: #e8eefb;
+    }
+
+    .question input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(to right, #1e3c72, #2563eb);
+      color: white;
+      border: none;
+      padding: 17px;
+      border-radius: 16px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: 0.3s ease;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.28);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .result-box {
+      max-width: 800px;
+      margin: 60px auto;
+      background: white;
+      border-radius: 28px;
+      padding: 50px 35px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .result-box h1 {
+      font-size: 42px;
+      color: #1e3c72;
+      margin-bottom: 20px;
+    }
+
+    .result-score {
+      font-size: 64px;
+      font-weight: 800;
+      color: #2563eb;
+      margin-bottom: 20px;
+    }
+
+    .result-box p {
+      font-size: 18px;
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .result-status {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .pass {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .fail {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .quiz-header h2 {
+        font-size: 24px;
+      }
+
+      .question h3 {
+        font-size: 18px;
+      }
+
+      .result-score {
+        font-size: 52px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="mainPage">
+
+    <div class="hero">
+      <h1>CloudOps Skill Check</h1>
+      <p>
+        A professional technical assessment designed to evaluate your knowledge
+        in AWS, Linux, Docker, Kubernetes, CI/CD, networking, security, and cloud operations.
+      </p>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h2><span id="answered">0</span>/30</h2>
+          <p>Questions Answered</p>
+        </div>
+        <div class="stat-card">
+          <h2><span id="remaining">30</span></h2>
+          <p>Questions Remaining</p>
+        </div>
+        <div class="timer-box">
+          <h2 id="timer">30:00</h2>
+          <p>Assessment Timer</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-box">
+      <h2 class="section-title">Candidate Information</h2>
+      <p class="section-subtitle">
+        Enter your details and answer as many questions as you can. All questions are optional.
+      </p>
+
+      <div class="form-grid">
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" />
+        </div>
+
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+        </div>
+
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input type="text" id="phone" placeholder="Enter your phone number" />
+        </div>
+      </div>
+
+      <div class="quiz-header">
+        <h2>Assessment Questions</h2>
+        <div class="quiz-badge">30 Questions | Flexible Attempt</div>
+      </div>
+
+      <div id="quiz"></div>
+
+      <button class="submit-btn" onclick="submitQuiz()">Submit Assessment</button>
+    </div>
+  </div>
+
+  <script>
+    const apiUrl = "https://xcigqkr9g1.execute-api.us-east-1.amazonaws.com/submit";
+
+    const questions = [
+      { q: "Which AWS service provides virtual servers in the cloud?", options: ["Amazon S3", "Amazon EC2", "AWS Lambda", "Amazon RDS"], answer: "Amazon EC2" },
+      { q: "Which AWS service is primarily used for object storage?", options: ["Amazon EC2", "Amazon S3", "Amazon DynamoDB", "AWS IAM"], answer: "Amazon S3" },
+      { q: "Which AWS service allows you to run code without managing servers?", options: ["Amazon ECS", "Amazon EC2", "AWS Lambda", "Amazon VPC"], answer: "AWS Lambda" },
+      { q: "What does IAM stand for in AWS?", options: ["Internet Access Manager", "Identity and Access Management", "Instance Access Mode", "Internal AWS Mechanism"], answer: "Identity and Access Management" },
+      { q: "Which AWS service is a NoSQL database?", options: ["Amazon RDS", "Amazon DynamoDB", "Amazon Aurora", "Amazon Redshift"], answer: "Amazon DynamoDB" },
+      { q: "Which AWS service is used to monitor resources and applications?", options: ["AWS CloudTrail", "Amazon CloudWatch", "AWS Config", "Amazon Inspector"], answer: "Amazon CloudWatch" },
+      { q: "Which AWS service is used to manage DNS?", options: ["Amazon Route 53", "Amazon S3", "AWS IAM", "AWS Lambda"], answer: "Amazon Route 53" },
+      { q: "What is Amazon VPC used for?", options: ["Object Storage", "Virtual Networking", "Relational Database", "Monitoring"], answer: "Virtual Networking" },
+      { q: "Which AWS service is used for relational databases?", options: ["Amazon DynamoDB", "Amazon RDS", "AWS Lambda", "Amazon S3"], answer: "Amazon RDS" },
+      { q: "Which AWS service helps distribute content globally with low latency?", options: ["Amazon Route 53", "Amazon CloudFront", "Amazon VPC", "AWS Lambda"], answer: "Amazon CloudFront" },
+      { q: "What is Docker mainly used for?", options: ["Version Control", "Containerization", "Database Management", "DNS Routing"], answer: "Containerization" },
+      { q: "What is Kubernetes primarily used for?", options: ["Monitoring", "Container Orchestration", "Storage", "Virtual Machines"], answer: "Container Orchestration" },
+      { q: "What does CI/CD stand for?", options: ["Code Integration / Code Delivery", "Continuous Integration / Continuous Delivery", "Cloud Infrastructure / Cloud Deployment", "Container Integration / Container Deployment"], answer: "Continuous Integration / Continuous Delivery" },
+      { q: "Which tool is commonly used for Infrastructure as Code?", options: ["Docker", "Terraform", "Git", "Jenkins"], answer: "Terraform" },
+      { q: "Which tool is mainly used for configuration management and automation?", options: ["Ansible", "Docker", "Jenkins", "Nginx"], answer: "Ansible" },
+      { q: "Which tool is widely used for CI/CD pipelines?", options: ["Kubernetes", "Jenkins", "Terraform", "Route 53"], answer: "Jenkins" },
+      { q: "What is Git primarily used for?", options: ["Container Management", "Version Control", "Cloud Storage", "Monitoring"], answer: "Version Control" },
+      { q: "Which command is used to clone a Git repository?", options: ["git init", "git clone", "git push", "git status"], answer: "git clone" },
+      { q: "What is the default SSH port?", options: ["80", "443", "22", "3306"], answer: "22" },
+      { q: "Which web server is commonly used with Linux?", options: ["Nginx", "MySQL", "Docker", "Git"], answer: "Nginx" },
+      { q: "What is API Gateway used for?", options: ["Database hosting", "Creating and managing APIs", "DNS routing", "Monitoring"], answer: "Creating and managing APIs" },
+      { q: "What is the main purpose of a Load Balancer?", options: ["Encrypt data", "Distribute incoming traffic", "Store backups", "Manage users"], answer: "Distribute incoming traffic" },
+      { q: "What does Auto Scaling do in AWS?", options: ["Adds storage automatically", "Adjusts resources based on demand", "Encrypts databases", "Creates IAM users"], answer: "Adjusts resources based on demand" },
+      { q: "What is a subnet in networking?", options: ["A storage bucket", "A smaller network inside a VPC", "A security policy", "A database cluster"], answer: "A smaller network inside a VPC" },
+      { q: "What is a Security Group in AWS?", options: ["A billing service", "A virtual firewall", "A monitoring tool", "A deployment service"], answer: "A virtual firewall" },
+      { q: "Which Linux command is used to list files in a directory?", options: ["pwd", "ls", "cd", "mkdir"], answer: "ls" },
+      { q: "Which Linux command is used to change directory?", options: ["ls", "mv", "cd", "pwd"], answer: "cd" },
+      { q: "What does the command 'pwd' do in Linux?", options: ["Prints current directory", "Deletes files", "Moves files", "Creates folder"], answer: "Prints current directory" },
+      { q: "What is cloud computing?", options: ["Using only local computers", "Delivering IT resources over the internet", "A database tool", "A Linux feature"], answer: "Delivering IT resources over the internet" },
+      { q: "Which AWS service can trigger Lambda functions through HTTP requests?", options: ["Amazon EC2", "Amazon Route 53", "API Gateway", "Amazon CloudFront"], answer: "API Gateway" }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+
+    questions.forEach((item, index) => {
+      const qBox = document.createElement("div");
+      qBox.className = "question";
+
+      qBox.innerHTML = `
+        <h3>${index + 1}. ${item.q}</h3>
+        ${item.options.map(option => `
+          <label>
+            <input type="radio" name="q${index}" value="${option}">
+            ${option}
+          </label>
+        `).join("")}
+      `;
+
+      quizContainer.appendChild(qBox);
+    });
+
+    document.addEventListener("change", () => {
+      const checked = document.querySelectorAll('input[type="radio"]:checked').length;
+      document.getElementById("answered").innerText = checked;
+      document.getElementById("remaining").innerText = 30 - checked;
+    });
+
+    let timeLeft = 30 * 60;
+    const timerElement = document.getElementById("timer");
+
+    const timerInterval = setInterval(() => {
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+
+      timerElement.innerText =
+        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        alert("Time is up! Your assessment will now be submitted.");
+        submitQuiz();
+      }
+
+      timeLeft--;
+    }, 1000);
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+
+      let score = 0;
+      let attempted = 0;
+
+      questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+        if (selected) {
+          attempted++;
+          if (selected.value === item.answer) {
+            score++;
+          }
+        }
+      });
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        score: score,
+        attempted: attempted
+      };
+
+      fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.text())
+      .then(result => {
+        document.body.innerHTML = `
+          <div class="result-box">
+            <h1>Assessment Completed</h1>
+            <div class="result-score">${score}/30</div>
+            <p><strong>Questions Attempted:</strong> ${attempted}</p>
+            <p><strong>Correct Answers:</strong> ${score}</p>
+            <p><strong>Time Used:</strong> ${30 - Math.floor(timeLeft / 60)} minutes</p>
+            <div class="result-status ${score >= 15 ? "pass" : "fail"}">
+              ${score >= 15 ? "PASS" : "FAIL"}
+            </div>
+          </div>
+        `;
+      })
+      .catch(error => {
+        alert("Submission failed. Please try again.");
+      });
+    }
+  </script>
+
+</body>
+</html>
